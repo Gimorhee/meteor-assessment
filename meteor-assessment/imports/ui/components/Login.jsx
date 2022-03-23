@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useTracker } from "meteor/react-meteor-data";
 import { AuthCollection } from "../../api/auth";
-
+import { AlertsCollection } from "../../api/alerts";
 const Login = () => {
   const users = useTracker(() => AuthCollection.find({}).fetch());
 
@@ -22,7 +22,9 @@ const Login = () => {
     let readyToLogin = true;
 
     if (email === "" || password === "") {
-      alert("Please enter all credentials");
+      AlertsCollection.insert({
+        text: "Please enter all credentials.",
+      });
       readyToLogin = false;
     }
 
@@ -35,10 +37,14 @@ const Login = () => {
         if (thisUser.password === password) {
           window.location.href = "/dashboard";
         } else {
-          alert("Invalid credentials");
+          AlertsCollection.insert({
+            text: "Invalid credentials.",
+          });
         }
       } else {
-        alert("User do not exist. Please try again.");
+        AlertsCollection.insert({
+          text: "User do not exist. Please try again.",
+        });
       }
     }
   };

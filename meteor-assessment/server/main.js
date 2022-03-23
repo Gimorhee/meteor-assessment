@@ -1,7 +1,7 @@
 import { Meteor } from "meteor/meteor";
-import { LinksCollection } from "/imports/api/links";
 import { AuthCollection } from "/imports/api/auth";
 import { DashboardCollection } from "/imports/api/dashboard";
+import { AlertsCollection } from "/imports/api/alerts";
 
 // function insertLink({ title, url }) {
 //   LinksCollection.insert({ title, url, createdAt: new Date() });
@@ -9,6 +9,14 @@ import { DashboardCollection } from "/imports/api/dashboard";
 
 function insertUser({ email, password }) {
   AuthCollection.insert({ email, password });
+}
+
+function addAlert({ text }) {
+  AlertsCollection.insert({ text });
+
+  //   setTimeout(() => {
+  //     AlertsCollection.remove({ text });
+  //   }, 3000);
 }
 
 Meteor.startup(() => {
@@ -29,7 +37,17 @@ Meteor.startup(() => {
     });
   }
 
-  if (AuthCollection.find().count() > 0) {
-    AuthCollection.remove("dhxJrv9MewgvpFPJ7");
+  //   if (AuthCollection.find().count() > 0) {
+  //     AuthCollection.remove("dhxJrv9MewgvpFPJ7");
+  //   }
+
+  if (AlertsCollection.find().count() === 0) {
+    addAlert({
+      text: "TESTING ALERT1",
+    });
+
+    addAlert({
+      text: "TESTING ALERT2",
+    });
   }
 });
