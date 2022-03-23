@@ -3,20 +3,12 @@ import { AuthCollection } from "/imports/api/auth";
 import { DashboardCollection } from "/imports/api/dashboard";
 import { AlertsCollection } from "/imports/api/alerts";
 
-// function insertLink({ title, url }) {
-//   LinksCollection.insert({ title, url, createdAt: new Date() });
-// }
-
 function insertUser({ email, password }) {
   AuthCollection.insert({ email, password });
 }
 
 function addAlert({ text }) {
   AlertsCollection.insert({ text });
-
-  //   setTimeout(() => {
-  //     AlertsCollection.remove({ text });
-  //   }, 3000);
 }
 
 Meteor.startup(() => {
