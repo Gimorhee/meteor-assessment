@@ -35,6 +35,7 @@ const Login = () => {
         const thisUser = users.find((user) => user.email === email);
 
         if (thisUser.password === password) {
+          localStorage.setItem("user", email);
           window.location.href = "/dashboard";
         } else {
           AlertsCollection.insert({
@@ -52,8 +53,8 @@ const Login = () => {
   return (
     <div className="login">
       <form type="submit" onSubmit={(e) => loginOnSubmit(e)}>
-        <input type="text" name="email" value={loginInfo.email} placeholder="Enter Email" onChange={(e) => loginOnChange(e)} />
-        <input type="text" name="password" value={loginInfo.password} placeholder="Enter Password" onChange={(e) => loginOnChange(e)} />
+        <input type="email" name="email" value={loginInfo.email} placeholder="Enter Email" onChange={(e) => loginOnChange(e)} />
+        <input type="password" name="password" value={loginInfo.password} placeholder="Enter Password" onChange={(e) => loginOnChange(e)} />
         <button type="submit">LOGIN</button>
       </form>
     </div>

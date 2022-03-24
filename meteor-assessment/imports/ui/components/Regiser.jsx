@@ -57,6 +57,7 @@ const Regiser = () => {
         password,
       });
 
+      localStorage.setItem("user", email);
       setRegisterInfo({ email: "", password: "", password2: "" });
       window.location.href = "/dashboard";
     }
@@ -65,9 +66,9 @@ const Regiser = () => {
   return (
     <div className="register">
       <form type="submit" onSubmit={(e) => registerOnSubmit(e)}>
-        <input type="text" name="email" value={email} placeholder="Enter Email" onChange={(e) => registerOnChange(e)} />
-        <input type="text" name="password" value={password} placeholder="Enter Password" onChange={(e) => registerOnChange(e)} />
-        <input type="text" name="password2" value={password2} placeholder="Confirm Password" onChange={(e) => registerOnChange(e)} />
+        <input type="email" name="email" value={email} placeholder="Enter Email" onChange={(e) => registerOnChange(e)} />
+        <input type="password" name="password" value={password} placeholder="Enter Password" onChange={(e) => registerOnChange(e)} />
+        <input type="password" name="password2" value={password2} placeholder="Confirm Password" onChange={(e) => registerOnChange(e)} />
         <button type="submit">REGISTER</button>
       </form>
     </div>
