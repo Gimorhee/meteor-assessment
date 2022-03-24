@@ -37,7 +37,7 @@ const Dashboard = () => {
         {feeds &&
           feeds.map((feed, i) => (
             <div className="feed" key={`feed-${i}`}>
-              <span>From: {feed.email}</span>
+              <span>{feed.email}</span>
               <p>{feed.text}</p>
             </div>
           ))}
